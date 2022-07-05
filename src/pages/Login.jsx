@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import { apiLogin } from '../services/apiCalls';
 
 function Login() {
+  const navigate = useNavigate();
   const [hiddenOn, setHiddenOn] = useState(true);
   const [login, setLogin] = useState({
     email: '',
@@ -18,9 +19,10 @@ function Login() {
     return loginValidation(login).error;
   }
 
-  async function submitLogin() {
+  async function submitLogin(e) {
+    e.preventDefault();
+
     const response = await apiLogin(login);
-    console.log(response);
 
     if (response.error) {
       setHiddenOn(false);
@@ -28,12 +30,16 @@ function Login() {
       const { token, user: { id, name, email, address } } = response;
       const userData = { id, name, email, address, token };
       localStorage.setItem('user', JSON.stringify(userData));
-      // setConnectionOn(userData);
+      navigate('/restaurants');
     }
   }
 
   return (
     <div id="login-body">
+      <div>
+        <h2>Não tem conta?</h2>
+        <Link to="/register">Cadastre-se</Link>
+      </div>
       <fieldset id="login-fieldset">
         <form id="login-form">
           <input
@@ -56,16 +62,14 @@ function Login() {
           >
             Email ou senha inválido.
           </p>
-          <Link to="/">
-            <button
-              onClick={ () => submitLogin() }
-              data-testid="login-button"
-              type="submit"
-              disabled={ handleLoginValidation() }
-            >
-              Entrar
-            </button>
-          </Link>
+          <button
+            data-testid="login-button"
+            type="submit"
+            disabled={ handleLoginValidation() }
+            onClick={ (e) => submitLogin(e) }
+          >
+            Entrar
+          </button>
         </form>
       </fieldset>
     </div>
