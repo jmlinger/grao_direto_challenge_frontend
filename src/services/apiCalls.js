@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { serverApiUrl, serverReactAppUrl } from '../utils/dynamicRoutes';
+import { serverApiUrl, serverReactAppUrl } from '../utils/dynamicUrls';
 
 const globalApiVariables = () => {
   const { id: userId, token } = JSON.parse(localStorage.getItem('user'));
