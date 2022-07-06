@@ -45,12 +45,10 @@ export const apiRegister = async (newUser) => {
   }
 };
 
-export const apiGetRestaurantsList = async (userId, search, favOn) => {
+export const apiGetRestaurantsList = async (search, favOn) => {
   try {
     const { config } = globalApiVariables();
-    const url = `
-    ${serverApiUrl}/restaurants/search?userId=${userId}&search=${search}&favOn=${favOn}
-    `;
+    const url = `${serverApiUrl}/restaurants/search?search=${search}&favOn=${favOn}`;
 
     const fetchApi = await axios.get(url, config);
     const response = await fetchApi.data;
@@ -68,6 +66,41 @@ export const apiGetRestaurantById = async (id) => {
     const url = `${serverApiUrl}/restaurants/${id}`;
 
     const fetchAPI = await axios.get(url, config);
+    const response = await fetchAPI.data;
+
+    return response;
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const apiFavRes = async (restaurantId) => {
+  try {
+    const { config } = globalApiVariables();
+    const url = `${serverApiUrl}/favres`;
+
+    const fetchAPI = await axios.post(
+      url,
+      { restaurantId: Number(restaurantId) },
+      config,
+    );
+    const response = await fetchAPI.data;
+
+    return response;
+  } catch (error) {
+    return { error };
+  }
+};
+
+export const apiUnFavRes = async (id) => {
+  try {
+    const { config } = globalApiVariables();
+    const url = `${serverApiUrl}/favres/${id}`;
+
+    const fetchAPI = await axios.delete(
+      url,
+      config,
+    );
     const response = await fetchAPI.data;
 
     return response;

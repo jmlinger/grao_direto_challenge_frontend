@@ -9,11 +9,11 @@ function Restaurants() {
   const [searchBarOff, setSearchBarOff] = useState(true);
   const [restaurants, setRestaurants] = useState([]);
   const [favOn, setFavOn] = useState(false);
-  const { id: userId, name: userName } = JSON.parse(localStorage.getItem('user'));
+  const { name: userName } = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     const get = async () => {
-      const response = await apiGetRestaurantsList(userId, search, favOn);
+      const response = await apiGetRestaurantsList(search, favOn);
       if (!response.error) {
         setRestaurants(response.restaurants);
       }
@@ -68,8 +68,8 @@ function Restaurants() {
         Exibir apenas favoritos
       </label>
       {
-        restaurants.map((restaurant) => (
-          <RestaurantCard key={ restaurant.id } restaurant={ restaurant } />
+        restaurants.map((restaurant, index) => (
+          <RestaurantCard key={ index } restaurant={ restaurant } />
         ))
       }
       <input
