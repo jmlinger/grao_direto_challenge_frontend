@@ -13,7 +13,7 @@ function Footer(props) {
       </Link>
       <button
         type="button"
-        hidden={ !pathname.includes('restaurants') }
+        hidden={ pathname !== '/restaurants' }
         onClick={ () => setSearchBarVisibility() }
       >
         <img
