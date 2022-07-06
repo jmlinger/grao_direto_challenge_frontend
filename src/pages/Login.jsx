@@ -15,10 +15,6 @@ function Login() {
     setLogin({ ...login, [name]: value });
   }
 
-  function handleLoginValidation() {
-    return loginValidation(login).error;
-  }
-
   async function submitLogin(e) {
     e.preventDefault();
 
@@ -65,7 +61,7 @@ function Login() {
           <button
             data-testid="login-button"
             type="submit"
-            disabled={ handleLoginValidation() }
+            disabled={ loginValidation(login).error }
             onClick={ (e) => submitLogin(e) }
           >
             Entrar
