@@ -45,10 +45,12 @@ export const apiRegister = async (newUser) => {
   }
 };
 
-export const apiGetRestaurantsList = async (search) => {
+export const apiGetRestaurantsList = async (userId, search, favOn) => {
   try {
     const { config } = globalApiVariables();
-    const url = `${serverApiUrl}/restaurants/search?search=${search}`;
+    const url = `
+    ${serverApiUrl}/restaurants/search?userId=${userId}&search=${search}&favOn=${favOn}
+    `;
 
     const fetchApi = await axios.get(url, config);
     const response = await fetchApi.data;
