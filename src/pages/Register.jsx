@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerValidation } from '../utils/inputValidations';
 import { apiRegister } from '../services/apiCalls';
+import '../styles/Login.css';
 
 function Register() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function Register() {
     name: '',
     email: '',
     address: '',
-    password: '',
+    password: ''
   });
 
   function handleChange({ target: { name, value } }) {
@@ -30,51 +31,54 @@ function Register() {
   }
 
   return (
-    <div>
-      <Link to="/">Já tenho conta!</Link>
-      <fieldset>
-        <form>
+    <div className="register">
+      <Link to="/" className="registered">
+        Já tenho conta!
+      </Link>
+      <fieldset className="login-container">
+        <form className="login-form">
           <input
+            className="login-input"
             data-testid="name-input"
             type="text"
             name="name"
             placeholder="Insira seu nome"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
+            className="login-input"
             data-testid="email-input"
             type="email"
             name="email"
             placeholder="Insira um email válido"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
+            className="login-input"
             data-testid="address-input"
             type="text"
             name="address"
             placeholder="Insira seu endereço completo"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
+            className="login-input"
             data-testid="password-input"
             type="password"
             name="password"
             placeholder="Insira uma senha válida"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
-          <p
-            hidden={ hiddenOn }
-            data-testid="invalid-email-element"
-          >
+          <p hidden={hiddenOn} data-testid="invalid-email-element">
             Email já cadastrado!
           </p>
           <button
+            className="login-button"
             data-testid="register-button"
             type="submit"
-            disabled={ registerValidation(register).error }
-            onClick={ (e) => submitRegister(e) }
-          >
-            Cadastrar-se
+            disabled={registerValidation(register).error}
+            onClick={(e) => submitRegister(e)}>
+            Cadastre-se
           </button>
         </form>
       </fieldset>

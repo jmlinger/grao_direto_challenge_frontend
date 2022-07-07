@@ -19,7 +19,6 @@ function Restaurants() {
       }
     };
     get();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, favOn]);
 
   useEffect(() => {
@@ -28,7 +27,6 @@ function Restaurants() {
     } else {
       setFavOn(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption]);
 
   const setSearchBarVisibility = () => {
@@ -41,19 +39,14 @@ function Restaurants() {
 
   return (
     <div>
-      <header>
-        Olá,
-        { ' ' }
-        { userName }
-        , temos uma lista de restaurantes próximos da sua localização.
-      </header>
+      <header>Olá, {userName}, temos uma lista de restaurantes próximos da sua localização.</header>
       <label htmlFor="all">
         <input
           id="all"
           type="checkbox"
           value="all"
-          checked={ selectedOption === 'all' }
-          onChange={ handleChange }
+          checked={selectedOption === 'all'}
+          onChange={handleChange}
         />
         Exibir todos
       </label>
@@ -62,24 +55,22 @@ function Restaurants() {
           id="fav"
           type="checkbox"
           value="fav"
-          checked={ selectedOption === 'fav' }
-          onChange={ handleChange }
+          checked={selectedOption === 'fav'}
+          onChange={handleChange}
         />
         Exibir apenas favoritos
       </label>
-      {
-        restaurants.map((restaurant, index) => (
-          <RestaurantCard key={ index } restaurant={ restaurant } />
-        ))
-      }
+      {restaurants.map((restaurant, index) => (
+        <RestaurantCard key={index} restaurant={restaurant} />
+      ))}
       <input
         type="text"
         name="search"
-        value={ search }
-        hidden={ searchBarOff }
-        onChange={ ({ target: { value } }) => setSearch(value) }
+        value={search}
+        hidden={searchBarOff}
+        onChange={({ target: { value } }) => setSearch(value)}
       />
-      <Footer setSearchBarVisibility={ setSearchBarVisibility } />
+      <Footer setSearchBarVisibility={setSearchBarVisibility} />
     </div>
   );
 }

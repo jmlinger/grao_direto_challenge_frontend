@@ -6,8 +6,8 @@ const globalApiVariables = () => {
 
   const config = {
     headers: {
-      authorization: token,
-    },
+      authorization: token
+    }
   };
   return { userId, config };
 };
@@ -79,11 +79,7 @@ export const apiFavRes = async (restaurantId) => {
     const { config } = globalApiVariables();
     const url = `${serverApiUrl}/favres`;
 
-    const fetchAPI = await axios.post(
-      url,
-      { restaurantId: Number(restaurantId) },
-      config,
-    );
+    const fetchAPI = await axios.post(url, { restaurantId: Number(restaurantId) }, config);
     const response = await fetchAPI.data;
 
     return response;
@@ -97,10 +93,7 @@ export const apiUnFavRes = async (id) => {
     const { config } = globalApiVariables();
     const url = `${serverApiUrl}/favres/${id}`;
 
-    const fetchAPI = await axios.delete(
-      url,
-      config,
-    );
+    const fetchAPI = await axios.delete(url, config);
     const response = await fetchAPI.data;
 
     return response;
