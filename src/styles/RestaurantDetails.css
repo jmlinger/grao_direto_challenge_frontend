@@ -1,48 +1,53 @@
 .main-div {
+  background-color: #660708;
   align-items: center;
-  background-color: red;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  height: auto;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 header {
-  height: 100%;
-  width: 100%;
-}
-
-.res-img {
   height: auto;
   width: 100%;
 }
 
+.res-img {
+  height: 22vh;
+  width: 100%;
+}
+
 .res-info-container {
-  margin-top: -7px;
+  margin-top: -8px;
   align-items: center;
   background-color: #FCFCFC;
   display: flex;
   flex-direction: column;
-  height: 35%;
+  height: auto;
   width: 100%;
+  padding: 5px 0 5px 0;
+  border: 2px solid black
 }
 
 .main-info-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .icons-container {
-  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  text-align:center;
+  flex-wrap: nowrap;
+  width: 20%;
 }
 
 .fav-icons {
   width: 30px;
   height: 30px;
-  border: 1px solid red;
 }
 
 .fav-button {
@@ -51,22 +56,70 @@ header {
 }
 
 .names-container {
-  align-items: center;
   text-align: center;
+  font-size: 13px;
+  width: 60%;
+  text-shadow: 5px 5px 5px #B1A7A6;
 }
 
-.desktop {
-  align-items: center;
-  /* display: none; */
+.names-container h3 {
+  color: #666666;
+  font-size: 17px;
+}
+
+.contact-info-container {
+  text-align: center;
+  font-size: 12px;
+}
+
+.menu-section {
+  background-color: blue;
+}
+.carousel-section {
+}
+
+.Carousel {
+
+}
+
+.card {
+  background: #FCFCFC;
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  width: auto;
+  height: 20vh;
+  text-align: center;
+  font-size: 10px;
+}
+
+.card-top {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.card-top img {
+  height: 10vh;
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin-bottom: 2px;
+}
+
+.card-bottom {
+  display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  text-align: justify;
+  font-size: 8px;
+  width: auto;
+  height: 6.5vh;
+  padding: 0 10px 0 10px;
 }
 
-.slide-img {
-  align-content: center;
-  height: 100px;
-  width: 150px;
-}
-
-.banners-section {
-  margin: auto;
+.price {
+  color: #660708;
+  bottom: 0;
+  position: relative;
+  text-align: end;
+  font-size: 12px;
 }
