@@ -1,44 +1,75 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Glide from 'react-glidejs';
+import Slider from 'react-slick';
 import '../styles/RestaurantDetails.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Carousel = (props) => {
   const { menu } = props;
   console.log(menu);
 
-  const gliderRef = useRef(null);
+  const settings = {
+    className: 'Carousel',
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 500,
+    pauseOnFocus: true,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
   return (
-    <section className="banners-section">
-      {'Carregando' && (
-        <Glide
-          ref={ gliderRef }
-          type="carousel"
-          customSlideAnimation={ {
-            timeout: 200,
-            classNames: 'fade',
-          } }
-          perView={ 2 }
-          startAt={ 1 }
-          focusAt="center"
-          autoplay={ 2500 }
-        >
-          {menu.map(({ image }, index) => (
-            <div key={ index }>
-              <div className="desktop">
-                <img src={ image } className="slide-img" alt="company-logo" />
-              </div>
+    <section className="carousel-section">
+      <Slider {...settings}>
+        {menu.map(({ name, description, image, price }, index) => (
+          <div key={index} className="card">
+            <div className="card-top">
+              <img src={image} alt="menu-items-img" />
+              <h1>{name}</h1>
             </div>
-          ))}
-        </Glide>
-      )}
+            <div className="card-bottom">
+              <p>{description}</p>
+              <p className="price">{price}</p>
+            </div>
+          </div>
+        ))}
+      </Slider>
     </section>
   );
 };
 
 export default Carousel;
 
-Carousel.propTypes = ({
-  menu: PropTypes.array,
-}).isRequired;
+Carousel.propTypes = {
+  menu: PropTypes.array
+}.isRequired;
