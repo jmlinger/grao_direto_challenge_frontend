@@ -1,32 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { FooterStyle } from '../styles/Footer';
+import { FooterContainer, FooterStyle, SearchBar } from '../styles/components/Footer';
+import { RestIcon, SearchIcon } from '../styles/components/Icons';
+import { useState } from 'react';
+import Profile from './Profile';
 
 function Footer(props) {
-  const { setSearchBarVisibility } = props;
+  const [searchBarOff, setSearchBarOff] = useState('hidden');
+  const { search, setSearch } = props;
   const { pathname } = useLocation();
 
   return (
-    <FooterStyle>
-      <Link to="/restaurants">
-        <img alt="página-principal" src="" />
-      </Link>
-      <button
-        type="button"
-        hidden={pathname !== '/restaurants'}
-        onClick={() => setSearchBarVisibility()}>
-        <img alt="barra de busca" src="" />
-      </button>
-      <Link to="/profile">
-        <img alt="perfil" src="" />
-      </Link>
-    </FooterStyle>
+    <FooterContainer>
+      <SearchBar
+        type="text"
+        name="search"
+        value={search}
+        placeholder="Pesquisar:"
+        visibility={searchBarOff}
+        onChange={({ target: { value } }) => setSearch(value)}
+      />
+      <FooterStyle>
+        <Link to="/restaurants">
+          <RestIcon pathname={pathname} />
+        </Link>
+        <button
+          type="button"
+          hidden={pathname !== '/restaurants'}
+          onClick={() => setSearchBarOff(searchBarOff === 'visible' ? 'hidden' : 'visible')}>
+          <SearchIcon searchBarOff={searchBarOff} />
+        </button>
+        <Profile />
+      </FooterStyle>
+    </FooterContainer>
   );
 }
 
 export default Footer;
 
 Footer.propTypes = {
-  setSearchBarVisibility: PropTypes.func
+  search: PropTypes.string,
+  setSearch: PropTypes.func
 }.isRequired;
