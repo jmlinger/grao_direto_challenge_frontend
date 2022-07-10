@@ -12,8 +12,8 @@ const globalApiVariables = () => {
   return { userId, config };
 };
 
-const expireTokenCaseError = ({ message }) => {
-  if (message === 'Request failed with status code 401') {
+const expireTokenCaseError = ({ response: { data } }) => {
+  if (data.includes('jwt expired')) {
     localStorage.clear();
 
     return window.location.replace(serverReactAppUrl);
@@ -70,7 +70,8 @@ export const apiGetRestaurantById = async (id) => {
 
     return response;
   } catch (error) {
-    return { error };
+    console.log(error);
+    return expireTokenCaseError(error);
   }
 };
 
@@ -84,7 +85,8 @@ export const apiFavRes = async (restaurantId) => {
 
     return response;
   } catch (error) {
-    return { error };
+    console.log(error.response.data);
+    return expireTokenCaseError(error);
   }
 };
 
@@ -98,19 +100,21 @@ export const apiUnFavRes = async (id) => {
 
     return response;
   } catch (error) {
-    return { error };
+    console.log(error);
+    return expireTokenCaseError(error);
   }
 };
 
-// const apiUpdateUser = async () => {
-//   try {
-//     const { config } = globalApiVariables();
-//     const url = `${serverApiUrl}register`;
-//     const fetchAPI = await axios.get(url, config);
-//     const response = await fetchAPI.data;
+export const apiUpdateRegister = async (user) => {
+  try {
+    const { config } = globalApiVariables();
+    const url = `${serverApiUrl}/users/update`;
+    const fetchAPI = await axios.put(url, user, config);
+    const response = await fetchAPI.data;
 
-//     return response;
-//   } catch (error) {
-//     return { error };
-//   }
-// };
+    return response;
+  } catch (error) {
+    console.log(error);
+    return expireTokenCaseError(error);
+  }
+};

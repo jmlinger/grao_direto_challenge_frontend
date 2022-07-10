@@ -12,7 +12,7 @@ const serverApiUrl =
 
 const serverReactAppUrl =
   process.env.REACT_APP_NODE_ENV === 'production'
-    ? `${REACT_APP_URL_DEPOYED}/login`
-    : `${REACT_APP_URL_LOCAL}/login`;
+    ? `${REACT_APP_URL_DEPOYED}`
+    : `${REACT_APP_URL_LOCAL}`;
 
 export { serverApiUrl, serverReactAppUrl };
