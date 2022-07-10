@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginValidation } from '../utils/inputValidations';
 import { apiLogin } from '../services/apiCalls';
-import '../styles/Login.css';
+import '../styles/pages/Login.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -34,14 +34,24 @@ function Login() {
     }
   }
 
+  function hiddenInvalidEmail() {
+    !hiddenOn && setTimeout(() => setHiddenOn(true), 4000);
+    return hiddenOn;
+  }
+
   return (
     <div id="login-body" className="login">
+      <Link to="/register" className="register-link">
+        <h2 className="login-register-1">Não tem conta?</h2>
+        <h2 className="login-register-2">Cadastre-se</h2>
+      </Link>
+      <div className="login-subtitle-container-container">
+        <div className="login-subtitle-container">
+          <h1 className="login-subtitle">Encontre os melhores restaurantes perto de você!</h1>
+        </div>
+      </div>
       <div>
-        <h1 className="login_title">Delicious Food</h1>
-        <h2 className="login_subtitle">Não tem conta?</h2>
-        <Link to="/register" className="login_register">
-          Cadastre-se
-        </Link>
+        <h1 className="login-title">Delicious Food</h1>
       </div>
       <fieldset id="login-fieldset" className="login-container">
         <form id="login-form" className="login-form">
@@ -61,7 +71,7 @@ function Login() {
             placeholder="Senha"
             onChange={handleChange}
           />
-          <p hidden={hiddenOn} data-testid="invalid-email-element">
+          <p hidden={hiddenInvalidEmail()} className="invalid-email" data-testid="invalid-email">
             Email ou senha inválido.
           </p>
           <button

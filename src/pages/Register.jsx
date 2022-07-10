@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerValidation } from '../utils/inputValidations';
 import { apiRegister } from '../services/apiCalls';
-import '../styles/Login.css';
+import '../styles/pages/Login.css';
 
 function Register() {
   const navigate = useNavigate();
@@ -30,9 +30,14 @@ function Register() {
     }
   }
 
+  function hiddenInvalidEmail() {
+    !hiddenOn && setTimeout(() => setHiddenOn(true), 4000);
+    return hiddenOn;
+  }
+
   return (
     <div className="register">
-      <Link to="/" className="registered">
+      <Link to="/" className="login-link">
         Já tenho conta!
       </Link>
       <fieldset className="login-container">
@@ -69,7 +74,10 @@ function Register() {
             placeholder="Insira uma senha válida"
             onChange={handleChange}
           />
-          <p hidden={hiddenOn} data-testid="invalid-email-element">
+          <p
+            hidden={hiddenInvalidEmail()}
+            className="invalid-email"
+            data-testid="invalid-email-element">
             Email já cadastrado!
           </p>
           <button
