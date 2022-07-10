@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import RestaurantCard from '../components/RestaurantCard';
 import { apiGetRestaurantsList } from '../services/apiCalls';
+import { Content, Filters, MainDiv, RestCards } from '../styles/pages/Restaurant';
 
 function Restaurants() {
+  const [restaurants, setRestaurants] = useState([]);
   const [selectedOption, setSelectedOption] = useState('all');
   const [search, setSearch] = useState('');
-  const [searchBarOff, setSearchBarOff] = useState(true);
-  const [restaurants, setRestaurants] = useState([]);
   const [favOn, setFavOn] = useState(false);
   const { name: userName } = JSON.parse(localStorage.getItem('user'));
 
@@ -29,49 +30,48 @@ function Restaurants() {
     }
   }, [selectedOption]);
 
-  const setSearchBarVisibility = () => {
-    setSearchBarOff(!searchBarOff);
-  };
-
-  const handleChange = ({ target: { value } }) => {
+  const changeRestFilter = ({ target: { value } }) => {
     setSelectedOption(value);
   };
 
   return (
-    <div>
-      <header>Olá, {userName}, temos uma lista de restaurantes próximos da sua localização.</header>
-      <label htmlFor="all">
-        <input
-          id="all"
-          type="checkbox"
-          value="all"
-          checked={selectedOption === 'all'}
-          onChange={handleChange}
-        />
-        Exibir todos
-      </label>
-      <label htmlFor="fav">
-        <input
-          id="fav"
-          type="checkbox"
-          value="fav"
-          checked={selectedOption === 'fav'}
-          onChange={handleChange}
-        />
-        Exibir apenas favoritos
-      </label>
-      {restaurants.map((restaurant, index) => (
-        <RestaurantCard key={index} restaurant={restaurant} />
-      ))}
-      <input
-        type="text"
-        name="search"
-        value={search}
-        hidden={searchBarOff}
-        onChange={({ target: { value } }) => setSearch(value)}
-      />
-      <Footer setSearchBarVisibility={setSearchBarVisibility} />
-    </div>
+    <MainDiv>
+      <Content>
+        <header>
+          Olá, {userName}, temos uma lista de restaurantes próximos da sua localização.
+        </header>
+        <Filters>
+          <label htmlFor="all">
+            <input
+              id="all"
+              type="checkbox"
+              value="all"
+              checked={selectedOption === 'all'}
+              onChange={changeRestFilter}
+            />
+            Exibir todos
+          </label>
+          <label htmlFor="fav">
+            <input
+              id="fav"
+              type="checkbox"
+              value="fav"
+              checked={selectedOption === 'fav'}
+              onChange={changeRestFilter}
+            />
+            Exibir favoritos
+          </label>
+        </Filters>
+        <RestCards>
+          {restaurants.map((restaurant, index) => (
+            <Link key={index} to={`/restaurants/${restaurant.id}`}>
+              <RestaurantCard restaurant={restaurant} />
+            </Link>
+          ))}
+        </RestCards>
+      </Content>
+      <Footer search={search} setSearch={setSearch} />
+    </MainDiv>
   );
 }
 
