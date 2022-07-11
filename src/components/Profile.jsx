@@ -2,8 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiUpdateRegister } from '../services/apiCalls';
 import { ProfileIcon } from '../styles/components/Icons';
-import { StyledModal } from '../styles/components/Profile';
 import { registerValidation } from '../utils/inputValidations';
+import '../styles/components/Profile.css';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
+
+const customStyles = {
+  content: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
 
 function Profile() {
   const {
@@ -54,10 +66,11 @@ function Profile() {
       <button onClick={toggleModal}>
         <ProfileIcon modalIsOpen={modalIsOpen} />
       </button>
-      <StyledModal
+      <Modal
+        className="modal"
+        style={customStyles}
         isOpen={modalIsOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}>
+        onRequestClose={toggleModal}>
         {/* <button onClick={toggleModal}>Fechar</button> */}
         <h2>Perfil</h2>
         <div hidden={!hideChangeData}>
@@ -121,7 +134,7 @@ function Profile() {
             </button>
           </div>
         </form>
-      </StyledModal>
+      </Modal>
     </div>
   );
 }

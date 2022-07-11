@@ -4,7 +4,7 @@ module.exports = {
     'stylelint-config-styled-components',
   ],
   plugins: ['stylelint-order'],
-  customSyntax: "@stylelint/postcss-css-in-js",
+  // customSyntax: "@stylelint/postcss-css-in-js",
   rules: {
     'rule-empty-line-before': ['always', { except: 'first-nested' }],
     'at-rule-empty-line-before': 'always',
