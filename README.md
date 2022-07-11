@@ -67,7 +67,7 @@ $ npm install
 
 ## Crie um arquivo .env
 
-- NODE_ENV=dev
+- NODE_ENV=development
 - MYSQL_HOST=localhost
 - MYSQL_PORT=3306
 - MYSQL_USER=(seu usuário mysql)
