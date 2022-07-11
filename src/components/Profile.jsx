@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiUpdateRegister } from '../services/apiCalls';
 import { ProfileIcon } from '../styles/components/Icons';
-import { registerValidation } from '../utils/inputValidations';
+import { updateUserValidation } from '../utils/inputValidations';
 import '../styles/components/Profile.css';
 import Modal from 'react-modal';
 
@@ -35,11 +35,20 @@ function Profile() {
     address: currentAddress,
     password: ''
   });
-  const { name, email, address, password } = register;
 
   useEffect(() => {
     setHideChangeData(true);
   }, [modalIsOpen]);
+
+  function reebotRegister() {
+    setRegister({
+      ...register,
+      name: currentName,
+      email: currentEmail,
+      password: '',
+      address: currentAddress
+    });
+  }
 
   async function submitUpdateRegister(e) {
     e.preventDefault();
@@ -49,7 +58,8 @@ function Profile() {
     if (!response.error) {
       setHideChangeData(true);
       // atualiza o local storage
-      const userData = { id: userId, name, email, address, token };
+      const { id, name, email, address } = response;
+      const userData = { id, name, email, address, token };
       localStorage.setItem('user', JSON.stringify(userData));
       window.location.reload();
     }
@@ -61,7 +71,16 @@ function Profile() {
 
   function toggleModal() {
     setIsOpen(!modalIsOpen);
+    reebotRegister();
   }
+
+  function BackToInitProfile() {
+    setHideChangeData(false);
+    reebotRegister();
+  }
+
+  const { name, email, address, password } = register;
+
   return (
     <div>
       <button onClick={toggleModal}>
@@ -72,11 +91,10 @@ function Profile() {
         style={customStyles}
         isOpen={modalIsOpen}
         onRequestClose={toggleModal}>
-        {/* <button onClick={toggleModal}>Fechar</button> */}
         <h2>Perfil</h2>
         <div hidden={!hideChangeData}>
           <div className="init-profile">
-            <button className="profile-button" onClick={() => setHideChangeData(false)}>
+            <button className="profile-button" onClick={() => BackToInitProfile()}>
               Alterar dados
             </button>
             <Link to="/">
@@ -122,11 +140,12 @@ function Profile() {
               value={password}
               onChange={handleChange}
             />
+            <p>Deixe em branco o campo que não deseja alterar.</p>
             <button
               className="profile-button"
               data-testid="register-button"
               type="submit"
-              disabled={registerValidation({ name, email, address, password }).error}
+              disabled={updateUserValidation({ name, email, address, password }).error}
               onClick={(e) => submitUpdateRegister(e)}>
               Enviar Alteração
             </button>

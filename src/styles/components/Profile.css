@@ -21,7 +21,7 @@ h2 {
   box-sizing: border-box;
   width: max(45vw, 185px);
   max-width: 500px;
-  height: max(4vh, 30px);
+  height: max(5vh, 30px);
   max-height: 60px;
   margin-bottom: 20px;
   padding-left: 7px;
@@ -36,7 +36,6 @@ h2 {
   height: auto;
   margin: 0;
   margin-top: 10px;
-  margin-bottom: 32px;
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -45,7 +44,6 @@ h2 {
   outline: none;
   font-weight: 600;
   font-size: max(1.8vw, 10px);
-  font-size: max(2vw, 15px);
   cursor: pointer;
   transition: 0.5s ease;
 }
@@ -70,7 +68,6 @@ h2 {
   transform: scale(1);
 }
 
-
 .init-profile {
   display: flex;
   flex-direction: column;
@@ -85,9 +82,14 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: justify;
 }
 
 .profile-form button {
   margin: 5px;
 }
-  
+
+.profile-form p {
+  margin: 20px;
+  font-size: max(1.2vw, 10px);
+}
