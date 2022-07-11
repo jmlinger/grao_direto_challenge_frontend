@@ -1,0 +1,53 @@
+/* stylelint-disable unit-allowed-list */
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: max(50vw, 220px);
+  max-width: 600px;
+  height: max(80vh, 400px);
+  max-height: 700px;
+  background-color: #b1a7a6;
+  box-shadow: 0 0 7px white;
+}
+
+h2 {
+  font-size: max(4vw, 30px);
+}
+
+.login-input {
+  width: max(45vw, 185px);
+  height: max(3vh, 30px);
+  font-size: max(1.8vw, 10px);
+}
+
+.login-button {
+  width: max(20vw, 150px);
+  height: auto;
+  margin: 0;
+  background-color: black;
+  font-size: max(1.8vw, 10px);
+}
+
+.init-profile {
+  display: flex;
+  flex-direction: column;
+  gap: max(3vh, 20px);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-form button {
+  margin: 5px;
+}
+  
