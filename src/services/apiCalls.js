@@ -109,7 +109,7 @@ export const apiUpdateRegister = async (user) => {
   try {
     const { config } = globalApiVariables();
     const url = `${serverApiUrl}/users/update`;
-    const fetchAPI = await axios.put(url, user, config);
+    const fetchAPI = await axios.patch(url, user, config);
     const response = await fetchAPI.data;
 
     return response;
