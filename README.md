@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+<h1 align="center">Delicious Food</h1>
+<br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Descrição
+Aplicativo fullstack desenvolvido em React e Node.js que apresenta para o usuário as melhores opções de restaurantes mais próximos da sua localidade.
 
-## Available Scripts
+Projeto desenvolvido como forma de critério avaliativo de etapa técnica do processo seletivo da empresa Grão Direto.
+<br><br>
 
-In the project directory, you can run:
+# Stacks de Desenvolvimento
 
-### `npm start`
+<div>
+  <a href="https://javascript.info/">
+    <img src="https://img.shields.io/badge/javascript-339933?style=for-the-badge&logo=javascript&color=black" />
+  </a>
+  <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">
+    <img src="https://img.shields.io/badge/html5-339933?style=for-the-badge&logo=html5&color=black" />
+  </a>
+  <a href="https://www.w3schools.com/cssref/">
+    <img src="https://img.shields.io/badge/css-339933?style=for-the-badge&logo=css3&color=black" />
+  </a>
+  <a href="https://pt-br.reactjs.org/docs/getting-started.html">
+    <img src="https://img.shields.io/badge/React-339933?style=for-the-badge&logo=react&color=black" />
+  </a>
+  <a href="https://styled-components.com/docs">
+    <img src="https://img.shields.io/badge/Styled--Components-339933?style=for-the-badge&logo=styledcomponents&color=black" />
+  </a>
+  <a href="https://docs.npmjs.com/">
+    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&color=black" />
+  </a>
+  <a href="https://expressjs.com/pt-br/">
+    <img src="https://img.shields.io/badge/Express.js-339933?style=for-the-badge&logo=express&color=black" /> 
+  </a>
+  <a href="https://dev.mysql.com/doc/">
+    <img src="https://img.shields.io/badge/MySQL-339933?style=for-the-badge&logo=mysql&color=black" />
+  </a>
+  <a href="https://sequelize.org/">
+    <img src="https://img.shields.io/badge/Sequelize-339933?style=for-the-badge&logo=sequelize&color=black" />
+  </a>
+</div>
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# A aplicação em nuvem
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Acesse a aplicação alocada no Heroku por <a href="https://frontend-delicious-food-app.herokuapp.com/"> aqui <a/>.
 
-### `npm test`
+<br>  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Rodando a aplicação localmente
+## Pré-requisitos
 
-### `npm run build`
+Para começar é necessário você ter instalado em sua máquina as seguintes ferramentas: [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/) e [MySQL](https://dev.mysql.com/doc/). Além disto, é importante possuir um editor de código como [VSCode](https://code.visualstudio.com/).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Rodando o servidor Back-End
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Clone este repositório com a chave SSH ou HTTP a depender de como seu git está configurado.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Acesse a pasta do projeto no terminal/cmd
+$ cd grao_direto
 
-### `npm run eject`
+# Vá para a back-end
+$ cd grao_direto_challenge_backend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Instale as dependências
+$ npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Crie um arquivo .env
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- NODE_ENV=dev
+- MYSQL_HOST=localhost
+- MYSQL_PORT=3306
+- MYSQL_USER=(seu usuário mysql)
+- MYSQL_PASSWORD=(sua senha mysql)
+- MYSQL_DB_NAME=grao_direto_challenge
+- JWT_SECRET=grao_direto_challenge
+	
+# Execute a aplicação
+$ npm run start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# O servidor inciará na porta:3001 - acesse <http://localhost:3001>
+```
 
-## Learn More
+### Rodando o Front-End 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Clone este repositório com a chave SSH ou HTTP a depender de como seu git está configurado.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Acesse a pasta do projeto no terminal/cmd
+$ cd grao_direto
 
-### Code Splitting
+# Vá para a front-end
+$ cd cd grao_direto_challenge_frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Instale as dependências
+$ npm install
 
-### Analyzing the Bundle Size
+## Crie um arquivo .env
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- REACT_APP_NODE_ENV=dev
+- REACT_APP_API_URL_DEPOYED=https://backend-delicious-food-app.herokuapp.com
+- REACT_APP_API_URL_LOCAL=http://localhost:3001
+- REACT_APP_URL_DEPOYED=https://frontend-delicious-food-app.herokuapp.com
+- REACT_APP_URL_LOCAL=http://localhost:3000
+	
+# Execute a aplicação em modo de desenvolvimento
+$ npm start
 
-### Making a Progressive Web App
+# A aplicação inciará na porta:3000 - acesse <http://localhost:3000>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<br>
 
-### Advanced Configuration
+## Funcionalidades da aplicação
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<div align=right>
+	<h4>V 1.36</h4>
 
-### Deployment
+</div>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Tela de login (/):
+- [x] Login.
 
-### `npm run build` fails to minify
+Tela de registro (/register):
+- [x] Cadastro de usuário.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Tela de Restaurantes (/restaurants):
+- [x] Exibe a lista dos restaurantes disponíveis.
+- [x] Exibe Barra de Navegação.
+- [x] Funcionalidade de filtragem por favoritos.
+- [x] Acesso à Tela de Detalhes do Restaurante ao selecionar um card.
+
+Tela de Detalhes do Restaurante(/restaurants/:id)
+- [x] Exibe detalhes do restaurante.
+- [x] Exibe detalhes do menu do restaurante.
+- [x] Exibe Barra de Navegação.
+- [x] Funcionalidade de favoritar restaurante.
+
+Barra de navegação:
+- [x] Acesso à Tela de Restaurantes.
+- [x] Barra de busca.
+- [x] Acesso ao Gerenciamento de Perfil.
+
+Gerenciamento de Perfil (modal):
+- [x] Alteração de dados do usuário.
+- [x] Logout.
