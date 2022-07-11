@@ -51,6 +51,7 @@ function Profile() {
       // atualiza o local storage
       const userData = { id: userId, name, email, address, token };
       localStorage.setItem('user', JSON.stringify(userData));
+      window.location.reload();
     }
   }
 
@@ -75,18 +76,18 @@ function Profile() {
         <h2>Perfil</h2>
         <div hidden={!hideChangeData}>
           <div className="init-profile">
-            <button className="login-button" onClick={() => setHideChangeData(false)}>
+            <button className="profile-button" onClick={() => setHideChangeData(false)}>
               Alterar dados
             </button>
             <Link to="/">
-              <button className="login-button">Logout</button>
+              <button className="profile-button">Logout</button>
             </Link>
           </div>
         </div>
         <form hidden={hideChangeData}>
           <div className="profile-form">
             <input
-              className="login-input"
+              className="profile-input"
               data-testid="name-input"
               type="text"
               name="name"
@@ -95,7 +96,7 @@ function Profile() {
               onChange={handleChange}
             />
             <input
-              className="login-input"
+              className="profile-input"
               data-testid="email-input"
               type="email"
               name="email"
@@ -104,7 +105,7 @@ function Profile() {
               onChange={handleChange}
             />
             <input
-              className="login-input"
+              className="profile-input"
               data-testid="address-input"
               type="text"
               name="address"
@@ -113,7 +114,7 @@ function Profile() {
               onChange={handleChange}
             />
             <input
-              className="login-input"
+              className="profile-input"
               data-testid="password-input"
               type="password"
               name="password"
@@ -122,14 +123,17 @@ function Profile() {
               onChange={handleChange}
             />
             <button
-              className="login-button"
+              className="profile-button"
               data-testid="register-button"
               type="submit"
               disabled={registerValidation({ name, email, address, password }).error}
               onClick={(e) => submitUpdateRegister(e)}>
               Enviar Alteração
             </button>
-            <button className="login-button" type="button" onClick={() => setHideChangeData(true)}>
+            <button
+              className="profile-button"
+              type="button"
+              onClick={() => setHideChangeData(true)}>
               Sair
             </button>
           </div>

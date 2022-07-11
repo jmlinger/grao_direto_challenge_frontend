@@ -5,9 +5,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: max(50vw, 220px);
+  width: max(80vw, 220px);
   max-width: 600px;
-  height: max(80vh, 400px);
+  height: max(84vh, 350px);
   max-height: 700px;
   background-color: #b1a7a6;
   box-shadow: 0 0 7px white;
@@ -17,19 +17,59 @@ h2 {
   font-size: max(4vw, 30px);
 }
 
-.login-input {
+.profile-input {
+  box-sizing: border-box;
   width: max(45vw, 185px);
-  height: max(3vh, 30px);
-  font-size: max(1.8vw, 10px);
+  max-width: 500px;
+  height: max(4vh, 30px);
+  max-height: 60px;
+  margin-bottom: 20px;
+  padding-left: 7px;
+  border: unset;
+  border-radius: 5px;
+  outline: none;
+  font-size: max(1.8vw, 12px);
 }
 
-.login-button {
+.profile-button {
   width: max(20vw, 150px);
   height: auto;
   margin: 0;
+  margin-top: 10px;
+  margin-bottom: 32px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
   background-color: black;
+  color: whitesmoke;
+  outline: none;
+  font-weight: 600;
   font-size: max(1.8vw, 10px);
+  font-size: max(2vw, 15px);
+  cursor: pointer;
+  transition: 0.5s ease;
 }
+
+.profile-button:hover {
+  box-shadow: 0px 0px 10px #ffffff;
+  transition-duration: 500ms;
+  transform: scale(1.1);
+}
+
+.profile-button:disabled {
+  border: none;
+  background-color: #f5f3f4;
+  color: #e5383b;
+  font-weight: 600;
+  opacity: 0.8;
+  cursor: default;
+}
+
+.profile-button:disabled:hover {
+  box-shadow: none;
+  transform: scale(1);
+}
+
 
 .init-profile {
   display: flex;
